@@ -1,7 +1,3 @@
-# , capture_output=True
-
-
-
 # PX
 
 `px` is a `guix` overlay that aims to automate certain steps, and offer additional guidance where necessary.
