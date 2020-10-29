@@ -8,7 +8,7 @@ logging.basicConfig(level=environ.get("LOGLEVEL", "INFO"))
 
 
 class Logger:
-    def __init__(self, context, application='px-secret-python-library'):
+    def __init__(self, context, application='px'):
         self.context = context
         self.name = application
         self.log = logging.getLogger(self.name)

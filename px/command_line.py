@@ -1,6 +1,7 @@
 from sys import stdout
 import px
 
+
 def main():
     r = px.main()
     stdout.flush()
@@ -11,6 +12,7 @@ def main():
     else:
         stdout.buffer.write(r)
     stdout.flush()
+
 
 if __name__ == '__main__':
     main()

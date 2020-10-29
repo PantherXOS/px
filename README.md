@@ -1,6 +1,6 @@
 # PX
 
-`px` is a `guix` overlay that aims to automate certain steps, and offer additional guidance where necessary.
+`px` is a `guix` and `flatpak` overlay that aims to automate certain steps, and offer additional guidance where necessary.
 
 ## Introduction
 
@@ -30,3 +30,10 @@ What it does is:
 2. depending on user:
    - (root) `guix system reconfigure /etc/system.scm`
    - (else) `guix package -u`
+3. (else) `flatpak --user --assumeyes --noninteractive update`
+
+#### Flatpak support
+
+Flatpak support is limited to updating applications installed with `--user` flag. No additional commands are supported.
+
+`px-update` will by default attempt to install Flatpak and Flatpak-application updates.
