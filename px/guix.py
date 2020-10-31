@@ -1,3 +1,4 @@
+import os
 import subprocess
 from .log import Logger
 from .util import prompt_yes_no, get_user
