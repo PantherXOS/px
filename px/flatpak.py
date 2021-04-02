@@ -1,9 +1,9 @@
+import logging
 import subprocess
-from .log import Logger
-from .util import prompt_yes_no, get_user
 
+from .util import get_user, prompt_yes_no
 
-log = Logger(__name__)
+log = logging.getLogger(__name__)
 
 
 class Flatpak:
@@ -27,6 +27,8 @@ class Flatpak:
             apply_update = False
             if not self.unattended:
                 apply_update = prompt_yes_no('Would you like to apply all pending Flatpak updates?')
+            else:
+                apply_update = True
 
             if self.installed and apply_update:
                 log.info('Found Flatpak installation. Updating related packages.')

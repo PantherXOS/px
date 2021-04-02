@@ -1,12 +1,12 @@
 import sys
 import os
+import logging
 
-from .log import Logger
 from .flatpak import Flatpak
 from .guix import Guix
+from .log import *
 
-
-log = Logger(__name__)
+log = logging.getLogger(__name__)
 
 
 def main():

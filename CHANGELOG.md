@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.4]
+### Fixed
+
+- Issue where `px update apply` wouldn't actually apply all updates
+
+### Changed
+
+- Better logging
+
 ## [0.0.3]
 ### Fixed
 

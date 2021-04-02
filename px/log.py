@@ -1,29 +1,32 @@
-import sys
-import syslog
 import logging
-from os import environ
+from logging.handlers import SysLogHandler, RotatingFileHandler
+from platform import system
+
+opsys = system()
 
 
-logging.basicConfig(level=environ.get("LOGLEVEL", "INFO"))
+log = logging.getLogger('px')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
+formatter_cli = logging.Formatter('%(levelname)s: %(message)s')
 
+log.setLevel(logging.DEBUG)
 
-class Logger:
-    def __init__(self, context, application='px'):
-        self.context = context
-        self.name = application
-        self.log = logging.getLogger(self.name)
+if opsys == 'Linux':
+    import syslog
 
-    def debug(self, message):
-        self.log.debug(message)
+    # On Linux we log all events to file
+    fh = RotatingFileHandler('/var/log/px.log', maxBytes=10000, backupCount=1)
+    fh.setLevel(logging.INFO)
+    fh.setFormatter(formatter)
+    log.addHandler(fh)
 
-    def info(self, message):
-        self.log.info(message)
-        # syslog.syslog(syslog.LOG_INFO, message)
+    # On Linux we engage syslog
+    sh = SysLogHandler()
+    sh.setLevel(logging.WARNING)
+    sh.setFormatter(formatter)
+    log.addHandler(sh)
 
-    def warning(self, message):
-        self.log.warning(message)
-        syslog.syslog(syslog.LOG_WARNING, message)
-
-    def error(self, message):
-        self.log.error(message)
-        syslog.syslog(syslog.LOG_ERR, message)
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter_cli)
+log.addHandler(ch)
