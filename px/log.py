@@ -1,12 +1,16 @@
 import getpass
 import logging
+import os
 from logging.handlers import RotatingFileHandler, SysLogHandler
 from platform import system
 
+from appdirs import user_data_dir
+
 opsys = system()
 
-ROOT_LOG_DIR = '/var/log/px.log'
-USER_LOG_DIR = user_data_dir("px") + '/px.log'
+ROOT_LOG = '/var/log/px.log'
+USER_LOG_DIR = user_data_dir("px")
+USER_LOG = USER_LOG_DIR + '/px.log'
 
 log = logging.getLogger('px')
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s', "%Y-%m-%d %H:%M:%S")
@@ -15,16 +19,18 @@ formatter_cli = logging.Formatter('%(levelname)s: %(message)s')
 log.setLevel(logging.DEBUG)
 
 if opsys == 'Linux':
-    from appdirs import user_data_dir
     import syslog
 
     current_user = getpass.getuser()
-    logdir = ROOT_LOG_DIR
+    log_file = ROOT_LOG
     if current_user != 'root':
         # For users we log to HOME since there's no access to `/var/log`
-        logdir = USER_LOG_DIR
+        log_file = USER_LOG
+        # We create the folder if it does not exist.
+        if not os.path.isdir(USER_LOG_DIR):
+            os.makedirs(USER_LOG_DIR)
 
-    fh = RotatingFileHandler(logdir, maxBytes=10000, backupCount=1)
+    fh = RotatingFileHandler(log_file, maxBytes=10000, backupCount=1)
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     log.addHandler(fh)
