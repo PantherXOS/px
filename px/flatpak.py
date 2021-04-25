@@ -1,7 +1,7 @@
 import logging
 import subprocess
 
-from .util import get_user, prompt_yes_no
+from .util import get_user, prompt_yes_no, runner
 
 log = logging.getLogger(__name__)
 
@@ -11,10 +11,11 @@ class Flatpak:
         username, is_root = get_user()
         self.username = username
         self.is_root = is_root
-        self.installed = self.installed()
+        self.is_installed = self._installed()
         self.unattended = unattended
 
-    def installed(self):
+    def _installed(self):
+        '''Check if Flatpak is installed. We silently catch the error.'''
         if not self.is_root:
             try:
                 subprocess.run(["flatpak", "--version"], capture_output=True)
@@ -30,6 +31,6 @@ class Flatpak:
             else:
                 apply_update = True
 
-            if self.installed and apply_update:
+            if self.is_installed and apply_update:
                 log.info('Found Flatpak installation. Updating related packages.')
-                subprocess.run(['flatpak', '--user', '--assumeyes', '--noninteractive', 'update'])
+                runner(['flatpak', '--user', '--assumeyes', '--noninteractive', 'update'])

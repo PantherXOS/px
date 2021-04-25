@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.7]
+### Added
+
+- Added option to run maintenance scripts: `px maintenance`
+
+### Changed
+
+- Subprocess commands with stderr get logged
+
 ## [0.0.6]
 ### Fixed
 

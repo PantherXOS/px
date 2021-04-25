@@ -32,6 +32,16 @@ What it does is:
    - (else) `guix package -u`
 3. (else) `flatpak --user --assumeyes --noninteractive update`
 
+### Maintenance
+
+If you're running into issues like GTK font's not displaying, or substitutes not downloading, do:
+
+```bash
+px maintenance
+```
+
+If in doubt, run this as both user and `root`.
+
 #### Flatpak support
 
 Flatpak support is limited to updating applications installed with `--user` flag. No additional commands are supported.

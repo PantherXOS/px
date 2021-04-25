@@ -19,8 +19,6 @@ formatter_cli = logging.Formatter('%(levelname)s: %(message)s')
 log.setLevel(logging.DEBUG)
 
 if opsys == 'Linux':
-    import syslog
-
     current_user = getpass.getuser()
     log_file = ROOT_LOG
     if current_user != 'root':
