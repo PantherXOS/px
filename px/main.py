@@ -18,7 +18,7 @@ def main():
     if sys.argv[1] == "update":
         '''Run application or system update'''
         unattended = False
-        
+
         if argument_count > 2:
             '''If True, skips all user prompts'''
             if sys.argv[2] == "apply":
@@ -37,25 +37,34 @@ def main():
 
     elif sys.argv[1] == "help":
         print("# Updates")
-        print("  Update: 'px update'; to skip all prompts: 'px update apply'")
-        print("  as user: Will update all applications you have installed yourself")
-        print("  as root: Will update the operating system and any globally installed application")
+        print("  To update run `px update`. To skip all prompts, run `px update apply`")
+        print("     as `user`: Update all packages you have installed as a user, to your user profile.")
+        print("     as `root`: Update the operating system and all global packages.")
         print("")
-        print("  Maintenance scripts: 'maintenance'")
+        print("  Issues with fonts or icons after updates? Run `px maintenance`")
         print("")
         print("# Packages")
-        print("  Search for a package: 'px package -s ...'")
-        print("  Install a package: 'px package -i ...'")
-        print("  Remove a package: 'px package -r ...'")
+        print("  To search, install or remove packages:")
+        print("     search: 'px package -s ...'")
+        print("     install: 'px package -i ...'")
+        print("     remove: 'px package -r ...'")
         print("")
-        print("Refer to 'guix --help' for all commands.")
-            
+        print("     Manually installed packages become part of the current user's user profile.")
+        print("     Each user may have their own selection of packages, at different versions.")
+        print("")
+        print("     To print all packages in the current user profile run `px package -I` or `guix package -I`")
+        print("")
+        print("Refer to 'px --help' or the guix manual for all commands and features")
+
     else:
         arguments = []
         arguments.append('guix')
 
         for x in range(1, argument_count):
+            print(sys.argv[x])
             arguments.append(sys.argv[x])
+
+        print(arguments)
 
         guix = Guix()
         guix.run(arguments)

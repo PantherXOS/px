@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.7'
+VERSION = '0.0.8'
 PACKAGE_NAME = 'px'
 AUTHOR = 'Franz Geffke'
 AUTHOR_EMAIL = 'franz@pantherx.org'
@@ -45,9 +45,9 @@ setup(name=PACKAGE_NAME,
       author_email=AUTHOR_EMAIL,
       url=URL,
       install_requires=INSTALL_REQUIRES,
-      entry_points = {
-        'console_scripts': [
-          'px=px.command_line:main'
+      entry_points={
+          'console_scripts': [
+              'px=px.command_line:main'
           ],
       },
       packages=find_packages(),

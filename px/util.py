@@ -18,7 +18,7 @@ def prompt_yes_no(question):
 
 def get_user():
     '''Returns username and a bool whether user is root or not'''
-    username = pwd.getpwuid( os.getuid() )[ 0 ]
+    username = pwd.getpwuid(os.getuid())[0]
     is_root = False
 
     if username == 'root':
@@ -29,6 +29,7 @@ def get_user():
 
 def runner(arguments):
     '''Command Runner'''
-    res = subprocess.run(arguments, capture_output=True)
+    print('=> Running {}'.format(arguments))
+    res = subprocess.run(arguments)
     if res.stderr:
         log.error(res.stderr)
