@@ -43,7 +43,7 @@ class Guix:
             if os.path.isfile('/etc/system.scm') is not True:
                 log.error('Could not find /etc/system.scm.')
                 sys.exit()
-            runner(['guix', 'system', 'reconfigure', '/etc/system.scm'])
+            runner(['guix','time-machine','-C','/etc/guix/channels.scm','--', 'system', 'reconfigure', '/etc/system.scm'])
 
         elif not self.is_root and apply_update:
             '''Updates under standard user'''
