@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.10]
+### Fixed
+
+- Adapted reconfiguration to default to `/etc/channels.scm`
+- Update root profile packages
 
 ## [0.0.9]
 ### Fixed

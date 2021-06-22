@@ -20,12 +20,14 @@ class Guix:
             log.info("=> Checking for system updates ...")
         else:
             log.info("=> Checking for user application updates ...")
-        
+
         # TODO: Remove --disable-authentication
         if os.path.isfile('/etc/channels.scm'):
             '''If we find /etc/channels.scm we automatically use this for updates'''
-            log.info('Found global channels file at /etc/channels.scm, defaulting to that.')
-            runner(['guix', 'pull', '--disable-authentication', '--channels=/etc/channels.scm'])
+            log.info(
+                'Found global channels file at /etc/channels.scm, defaulting to that.')
+            runner(['guix', 'pull', '--disable-authentication',
+                    '--channels=/etc/channels.scm'])
         else:
             runner(['guix', 'pull', '--disable-authentication'])
 
@@ -34,7 +36,8 @@ class Guix:
         apply_update = False
 
         if not self.unattended:
-            apply_update = prompt_yes_no('Would you like to apply all pending updates?')
+            apply_update = prompt_yes_no(
+                'Would you like to apply all pending updates?')
         else:
             apply_update = True
 
@@ -43,7 +46,10 @@ class Guix:
             if os.path.isfile('/etc/system.scm') is not True:
                 log.error('Could not find /etc/system.scm.')
                 sys.exit()
-            runner(['guix','time-machine','-C','/etc/guix/channels.scm','--', 'system', 'reconfigure', '/etc/system.scm'])
+            runner(['guix', 'time-machine', '-C', '/etc/channels.scm',
+                    '--disable-authentication', '--', 'system', 'reconfigure', '/etc/system.scm'])
+            '''Update root profile packages'''
+            runner(['guix', 'package', '-u'])
 
         elif not self.is_root and apply_update:
             '''Updates under standard user'''
@@ -51,9 +57,11 @@ class Guix:
 
         else:
             if self.is_root:
-                log.info("To apply all pending updates manually, run: px system reconfigure /etc/system.scm")
+                log.info(
+                    "To apply all pending updates manually, run: px system reconfigure /etc/system.scm")
             else:
-                log.info("To apply all pending updates manually, run: px package -u")  
+                log.info(
+                    "To apply all pending updates manually, run: px package -u")
             exit(0)
 
     def run(self, arguments):
@@ -69,7 +77,8 @@ class Guix:
             try:
                 os.rmdir(location)
             except:
-                log.error('Failed to delete substitues cache at {}'.format(location))
+                log.error(
+                    'Failed to delete substitues cache at {}'.format(location))
 
     def _run_maintenance_scripts(self):
         runner(['fc-cache', '-rv'])
