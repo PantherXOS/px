@@ -29,7 +29,7 @@ def get_user():
 
 def runner(arguments):
     '''Command Runner'''
-    print('=> Running {}'.format(arguments))
+    log.debug('=> Running {}'.format(arguments))
     res = subprocess.run(arguments)
     if res.stderr:
         log.error(res.stderr)

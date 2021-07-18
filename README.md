@@ -1,12 +1,12 @@
 # PX
 
-`px` is a `guix` and `flatpak` overlay that aims to automate certain steps, and offer additional guidance where necessary.
+`px` is a `guix` and `flatpak` wrapper that aims to automate certain steps, and offer additional guidance where necessary.
 
 ## Introduction
 
 Unless otherwise noted below, all _guix_ commands work as usual:
 
-```
+```bash
 px package -s <package>
 px system reconfigure /etc/system.scm
 ```
@@ -17,7 +17,7 @@ Let's have a look at _px_ specific commands:
 
 To run a update, do:
 
-```
+```bash
 px update
 px update apply # skip prompt after pull
 ```
@@ -28,7 +28,7 @@ What it does is:
 
 1. `guix pull --disable-authentication`
 2. depending on user:
-   - (root) `guix system reconfigure /etc/system.scm`
+   - (root) `guix system reconfigure /etc/system.scm; guix package -u`
    - (else) `guix package -u`
 3. (else) `flatpak --user --assumeyes --noninteractive update`
 

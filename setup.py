@@ -1,6 +1,6 @@
 ##
-# Contacts and Calendar --- Sync and access PIM data
-# Copyright © 2020 Franz Geffke <franz@pantherx.org>
+# PX - Guix and Flatpak Wrapper
+# Copyright © 2020-2021 Franz Geffke <franz@pantherx.org>
 #
 # This file is part of PantherX OS
 #
@@ -22,13 +22,13 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.10'
+VERSION = '0.0.11'
 PACKAGE_NAME = 'px'
 AUTHOR = 'Franz Geffke'
 AUTHOR_EMAIL = 'franz@pantherx.org'
-URL = 'https://git.pantherx.org/development/'
+URL = 'https://git.pantherx.org/development/applications/px'
 
-LICENSE = ''
+LICENSE = 'GPLv3+'
 DESCRIPTION = 'PantherX Guix and Flatpak Wrapper'
 LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
