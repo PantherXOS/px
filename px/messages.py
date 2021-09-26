@@ -2,6 +2,7 @@ MESSAGES = {
     'check_system_updates': '=> Checking for system updates ...',
     'check_user_updates': "=> Checking for user application updates ...",
     'channels_found': 'Found global channels file at /etc/channels.scm, defaulting to that.',
+    'channels_found_legacy': 'Found global channels file at /etc/channels.scm, defaulting to that.',
     'system_config_not_found': "Could not find /etc/system.scm",
     'question_apply_updates': 'Would you like to apply all pending updates?',
     'help_system_updates': 'To apply all pending updates manually, run: px system reconfigure /etc/system.scm',

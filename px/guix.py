@@ -2,8 +2,9 @@ import logging
 import os
 
 from .util import get_user, prompt_yes_no, runner
-from .config import CHANNELS_FILE, SYSTEM_CONFIG_FILE, SUBSTITUTE_CACHE_PATH, COMMANDS
+from .config import CHANNELS_FILE, CHANNELS_FILE_LEGACY, SYSTEM_CONFIG_FILE, SUBSTITUTE_CACHE_PATH, COMMANDS
 from .messages import MESSAGES
+from .migration import migrate_channels_file
 
 log = logging.getLogger(__name__)
 
@@ -19,13 +20,18 @@ class Guix:
         '''Check for new updates'''
         if self.is_root:
             log.info(MESSAGES['check_system_updates'])
+            migrate_channels_file()
         else:
             log.info(MESSAGES['check_user_updates'])
 
         if os.path.isfile(CHANNELS_FILE):
-            '''If we find /etc/channels.scm we automatically use this for updates'''
+            '''If we find /etc/guix/channels.scm we automatically use this for updates'''
             log.info(MESSAGES['channels_found'])
             runner(COMMANDS['get_updates_overwrite'])
+        elif os.path.isfile(CHANNELS_FILE_LEGACY):
+            '''[LEGACY] If we find /etc/channels.scm we automatically use this for updates'''
+            log.info(MESSAGES['channels_found_legacy'])
+            runner(COMMANDS['get_updates_overwrite_legacy'])
         else:
             runner(COMMANDS['get_updates'])
 
@@ -46,7 +52,10 @@ class Guix:
                         MESSAGES['system_config_not_found']
                     )
                 else:
-                    runner(COMMANDS['apply_system_updates'])
+                    if os.path.isfile(CHANNELS_FILE):
+                        runner(COMMANDS['apply_system_updates'])
+                    elif os.path.isfile(CHANNELS_FILE_LEGACY):
+                        runner(COMMANDS['apply_system_updates_legacy'])
                     runner(COMMANDS['apply_profile_updates'])
             else:
                 runner(COMMANDS['apply_profile_updates'])
