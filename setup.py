@@ -22,13 +22,13 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.13'
+VERSION = '0.0.14'
 PACKAGE_NAME = 'px'
 AUTHOR = 'Franz Geffke'
 AUTHOR_EMAIL = 'franz@pantherx.org'
 URL = 'https://git.pantherx.org/development/applications/px'
 
-LICENSE = 'GPLv3+'
+LICENSE = 'GPLv3'
 DESCRIPTION = 'PantherX Guix and Flatpak Wrapper'
 LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
