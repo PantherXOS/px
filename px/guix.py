@@ -33,6 +33,7 @@ class Guix:
             log.info(MESSAGES['channels_found_legacy'])
             runner(COMMANDS['get_updates_overwrite_legacy'])
         else:
+            '''If we don't find any channels file, use whatever is default ... this shouldn't happen.'''
             runner(COMMANDS['get_updates'])
 
     def update(self):
@@ -56,9 +57,7 @@ class Guix:
                         runner(COMMANDS['apply_system_updates'])
                     elif os.path.isfile(CHANNELS_FILE_LEGACY):
                         runner(COMMANDS['apply_system_updates_legacy'])
-                    runner(COMMANDS['apply_profile_updates'])
-            else:
-                runner(COMMANDS['apply_profile_updates'])
+            runner(COMMANDS['apply_profile_updates'])
         else:
             if self.is_root:
                 log.info(MESSAGES['help_system_updates'])

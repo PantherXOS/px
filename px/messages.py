@@ -1,7 +1,7 @@
 MESSAGES = {
     'check_system_updates': '=> Checking for system updates ...',
     'check_user_updates': "=> Checking for user application updates ...",
-    'channels_found': 'Found global channels file at /etc/channels.scm, defaulting to that.',
+    'channels_found': 'Found global channels file at /etc/guix/channels.scm, defaulting to that.',
     'channels_found_legacy': 'Found global channels file at /etc/channels.scm, defaulting to that.',
     'system_config_not_found': "Could not find /etc/system.scm",
     'question_apply_updates': 'Would you like to apply all pending updates?',
@@ -31,10 +31,16 @@ def help_block():
     print("     remove: 'px package -r ...'")
     print("")
     print(
-        "     Manually installed packages become part of the current user's user profile.")
+        "     Manually installed packages become part of the current user's user profile."
+    )
     print(
-        "     Each user may have their own selection of packages, at different versions.")
+        "     Each user may have their own selection of packages, at different versions."
+    )
     print("")
     print("     To print all packages in the current user profile run `px package -I` or `guix package -I`")
+    print("")
+    print("### Services")
+    print("  To search services: 'px system search ...'")
+    print("")
     print("")
     print("Refer to 'px --help' or the guix manual for all commands and features")

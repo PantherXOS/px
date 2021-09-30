@@ -1,6 +1,6 @@
 # PX
 
-`px` is a `guix` and `flatpak` wrapper that aims to automate certain steps, and offer additional guidance where necessary.
+`px` is a `guix` and `flatpak` "wrapper" that aims to automate certain steps, and offer additional guidance where necessary.
 
 ## Introduction
 
@@ -26,11 +26,11 @@ This will differentiate between `root` and `user` automatically. This command as
 
 What it does is:
 
-1. `guix pull --disable-authentication`
+1. `guix pull --disable-authentication --channels=/etc/guix/channels.scm`
 2. depending on user:
    - (root) `guix system reconfigure /etc/system.scm; guix package -u`
-   - (else) `guix package -u`
-3. (else) `flatpak --user --assumeyes --noninteractive update`
+   - (user) `guix package -u`
+3. (user) `flatpak --user --assumeyes --noninteractive update`
 
 ### Maintenance
 

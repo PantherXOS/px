@@ -1,6 +1,5 @@
+import getpass
 import logging
-import os
-import pwd
 import subprocess
 
 log = logging.getLogger(__name__)
@@ -18,7 +17,7 @@ def prompt_yes_no(question):
 
 def get_user():
     '''Returns username and a bool whether user is root or not'''
-    username = pwd.getpwuid(os.getuid())[0]
+    username = getpass.getuser()
     is_root = False
 
     if username == 'root':
@@ -30,6 +29,6 @@ def get_user():
 def runner(arguments):
     '''Command Runner'''
     log.debug('=> Running {}'.format(arguments))
-    res = subprocess.run(arguments)
+    res = subprocess.run(arguments, check=True)
     if res.stderr:
         log.error(res.stderr)

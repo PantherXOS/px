@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.13]
+
+### Fixed
+
+- Updated text to reflect new channels file location.
+
+### Changed
+
+- Running `px` shows the help text
+- Updated help text with info on how-to search for services
+
 ## [0.0.12]
 
 ### Changed
