@@ -53,6 +53,6 @@ Flatpak support is limited to updating applications installed with `--user` flag
 Quick test:
 
 ```bash
-rsync -r --exclude={'venv','git','__pycache','tests','scripts'} ../px root@<IP>:/root
+rsync -r --exclude={'venv','.git','__pycache','tests'} ../px root@<IP>:/root
 cd px; python3 -m venv venv; source venv/bin/activate; pip3 install .; px update apply
 ```

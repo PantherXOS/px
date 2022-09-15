@@ -63,10 +63,15 @@ class Guix:
                         arm_firmware = ARMFirmware()
                         arm_firmware.snapshot()
 
-                    if os.path.isfile(CHANNELS_FILE):
-                        runner(COMMANDS['apply_system_updates'])
-                    elif os.path.isfile(CHANNELS_FILE_LEGACY):
-                        runner(COMMANDS['apply_system_updates_legacy'])
+                        # On ARM we currently --skip-checks
+                        # guix system: error: you may need these modules in the initrd for /dev/mmcblk0p2: uio_pdrv_genirq
+                        if os.path.isfile(CHANNELS_FILE):
+                            runner(COMMANDS['apply_system_updates_arm'])
+                    else:
+                        if os.path.isfile(CHANNELS_FILE):
+                            runner(COMMANDS['apply_system_updates'])
+                        elif os.path.isfile(CHANNELS_FILE_LEGACY):
+                            runner(COMMANDS['apply_system_updates_legacy'])
 
                     # ARM Workaround
                     if self.architecture == 'aarch64' and arm_firmware is not None:

@@ -13,6 +13,8 @@ COMMANDS = {
     'get_updates_overwrite_legacy': ['guix', 'pull', '--disable-authentication', channels_switch_legacy],
     'apply_system_updates': ['guix', 'time-machine', '-C', CHANNELS_FILE,
                              '--disable-authentication', '--', 'system', 'reconfigure', SYSTEM_CONFIG_FILE],
+    'apply_system_updates_arm': ['guix', 'time-machine', '-C', CHANNELS_FILE,
+                             '--disable-authentication', '--skip-checks', '--', 'system', 'reconfigure', SYSTEM_CONFIG_FILE],
     'apply_system_updates_legacy': ['guix', 'time-machine', '-C', CHANNELS_FILE_LEGACY,
                                     '--disable-authentication', '--', 'system', 'reconfigure', SYSTEM_CONFIG_FILE],
     'apply_profile_updates': ['guix', 'package', '-u']

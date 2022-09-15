@@ -15,7 +15,7 @@ arm_boards_config = [
         "dt_overlays_name": 'seeed-reterminal-dtoverlays'
     },
     {
-        "board_name": 'Raspberry Pi 4 Model B Rev 1.0',
+        "board_name": 'Raspberry Pi 4 Model B',
         "u_boot_name": 'u-boot-rpi-arm64',
         "firmware_name": 'raspberrypi-firmware'
     },
@@ -26,11 +26,6 @@ arm_boards_config = [
     },
     {
         "board_name": 'Raspberry Pi 4 Model B Rev 1.2',
-        "u_boot_name": 'u-boot-rpi-arm64',
-        "firmware_name": 'raspberrypi-firmware'
-    },
-    {
-        "board_name": 'Raspberry Pi 4 Model B Rev 1.3',
         "u_boot_name": 'u-boot-rpi-arm64',
         "firmware_name": 'raspberrypi-firmware'
     },
@@ -125,8 +120,19 @@ def copy_dtoverlays(pkg_path: str, boot_mount_point: str):
 
 class ARMFirmware:
     '''
-    Ugly work-around until we have time to implement and upstream this in guix
+    Ugly work-around until we have time to implement and upstream this in guix.
+
+	Installs:
+	- u-boot
+	- raspi firmware
+	- SEEED reTerminal overlays
+
     This only supports 
+	- Raspberry Pi 4
+	- Raspberry Pi CM 4
+	- reTerminal with Raspberry Pi CM 4
+
+	WIP: In theory Raspberry Pi 3 should work too
     '''
     u_boot_name = None
     firmware_name = None
