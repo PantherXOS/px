@@ -1,5 +1,8 @@
 import logging
 import os
+from platform import platform
+
+from px.arm_firmware import ARMFirmware
 
 from .util import get_user, prompt_yes_no, runner
 from .config import CHANNELS_FILE, CHANNELS_FILE_LEGACY, SYSTEM_CONFIG_FILE, SUBSTITUTE_CACHE_PATH, COMMANDS
@@ -15,6 +18,7 @@ class Guix:
         self.username = username
         self.is_root = is_root
         self.unattended = unattended
+        self.architecture = platform.machine()
 
     def update_check(self):
         '''Check for new updates'''
@@ -53,10 +57,21 @@ class Guix:
                         MESSAGES['system_config_not_found']
                     )
                 else:
+                    # ARM Workaround
+                    arm_firmware = None
+                    if self.architecture == 'aarch64':
+                        arm_firmware = ARMFirmware()
+                        arm_firmware.snapshot()
+
                     if os.path.isfile(CHANNELS_FILE):
                         runner(COMMANDS['apply_system_updates'])
                     elif os.path.isfile(CHANNELS_FILE_LEGACY):
                         runner(COMMANDS['apply_system_updates_legacy'])
+
+                    # ARM Workaround
+                    if self.architecture == 'aarch64' and arm_firmware is not None:
+                        arm_firmware.update()
+
             runner(COMMANDS['apply_profile_updates'])
         else:
             if self.is_root:
