@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
-## WIP
+## [0.0.15]
 
 ### Added
 
-- Support for handling ARM u-boot, firmware and overlays for Raspberry Pi (Workaround)
+- Support for handling ARM u-boot, firmware and overlays for Raspberry Pi
 
 ## [0.0.14]
 
