@@ -1,6 +1,6 @@
 import logging
 import os
-from platform import platform
+import platform
 
 from px.arm_firmware import ARMFirmware
 

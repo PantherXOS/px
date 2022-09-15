@@ -148,7 +148,7 @@ class ARMFirmware:
         if board_config is not None:
             self.is_supported = True
             
-            for key, value in board_config:
+            for key, value in board_config.items():
                 if key == "u_boot_name":
                     self.u_boot_name = value
                 if key == "firmware_name":

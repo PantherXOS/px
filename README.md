@@ -47,3 +47,12 @@ If in doubt, run this as both user and `root`.
 Flatpak support is limited to updating applications installed with `--user` flag. No additional commands are supported.
 
 `px-update` will by default attempt to install Flatpak and Flatpak-application updates.
+
+## Development
+
+Quick test:
+
+```bash
+rsync -r --exclude={'venv','git','__pycache','tests','scripts'} ../px root@<IP>:/root
+cd px; python3 -m venv venv; source venv/bin/activate; pip3 install .; px update apply
+```
