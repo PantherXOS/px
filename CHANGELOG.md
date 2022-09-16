@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.16]
+
+### Added
+
+- Shortcut to reconfigre with `px reconfigure`
+
 ## [0.0.15]
 
 ### Added

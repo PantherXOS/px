@@ -17,6 +17,9 @@ MESSAGES_FLATPAK = {
 
 
 def help_block():
+    print("### Configuration changes")
+    print("  To apply system configuration changes (/etc/system.scm) run `px reconfigure` as `root` user.")
+    print("")
     print("### Updates")
     print("  To update run `px update`. To skip all prompts, run `px update apply`")
     print("     as `user`: Update all packages you have installed as a user, to your user profile.")

@@ -13,6 +13,14 @@ px system reconfigure /etc/system.scm
 
 Let's have a look at _px_ specific commands:
 
+### Reconfigure
+
+To apply configuration changes in `/etc/system.scm` run as `root`:
+
+```bash
+px reconfigure
+```
+
 ### Update
 
 To run a update, do:

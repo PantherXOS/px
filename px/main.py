@@ -38,6 +38,10 @@ def main():
         flatpak = Flatpak(unattended)
         flatpak.update()
 
+    elif sys.argv[1] == "reconfigure":
+        guix = Guix(unattended=True)
+        guix.update()
+
     elif sys.argv[1] == "maintenance":
         guix = Guix(unattended=True)
         guix.maintenance()
