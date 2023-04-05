@@ -3,6 +3,9 @@ import sys
 
 import pkg_resources
 
+from px.fix_lxqt_quicklaunch import PanelConfig
+from px.fix_mime import DesktopFiles, MimeApps
+
 from .flatpak import Flatpak
 from .guix import Guix
 from .log import *
@@ -45,6 +48,15 @@ def main():
     elif sys.argv[1] == "maintenance":
         guix = Guix(unattended=True)
         guix.maintenance()
+
+        panel_config = PanelConfig()
+        panel_config.apply_changes(dry_run=False)
+
+        desktop_files = DesktopFiles()
+        desktop_files_changes = desktop_files.delete_duplicate_older_files_by_unique_application_names(dry_run=False)
+
+        mime = MimeApps()
+        mime.apply_desktop_files_operation_results(desktop_files_changes, dry_run=False)
 
     elif sys.argv[1] == "help":
         help_block()

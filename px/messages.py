@@ -25,7 +25,7 @@ def help_block():
     print("     as `user`: Update all packages you have installed as a user, to your user profile.")
     print("     as `root`: Update the operating system and all global packages.")
     print("")
-    print("  Issues with fonts or icons after updates? Run `px maintenance`")
+    print("  Issues with fonts, icons or mime after updates? Run `px maintenance`")
     print("")
     print("### Packages")
     print("  To search, install or remove packages:")
