@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.17'
+VERSION = '0.0.18'
 PACKAGE_NAME = 'px'
 AUTHOR = 'Franz Geffke'
 AUTHOR_EMAIL = 'franz@pantherx.org'

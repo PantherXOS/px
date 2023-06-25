@@ -34,7 +34,7 @@ This will differentiate between `root` and `user` automatically. This command as
 
 What it does is:
 
-1. `guix pull --disable-authentication --channels=/etc/guix/channels.scm`
+1. `guix pull --channels=/etc/guix/channels.scm`
 2. depending on user:
    - (root) `guix system reconfigure /etc/system.scm; guix package -u`
    - (user) `guix package -u`

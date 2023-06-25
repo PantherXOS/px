@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.18]
+
+### Changed
+
+- Removed `--disable-authentication` from all commands (so channels are authenticated now)
+
 ## [0.0.16]
 
 ### Added
