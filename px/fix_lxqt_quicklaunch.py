@@ -15,6 +15,10 @@ def parse_file_name(file_name: str) -> str:
     hash, remaining = file_name.split('-', 1)
     result = re.compile('\-\d').split(remaining)
     name = result[0]
+
+    # for ex.
+    # name: profile/share/applications/org.keepassxc.KeePassXC.desktop
+    # binary: org.keepassxc.KeePassXC
     return name, binary
 
 def find_current_path(name: str):
@@ -29,7 +33,30 @@ def get_store_path(path: str):
     result = subprocess.run(f"ls -l {path}", shell=True, capture_output=True)
     if result.stdout:
         _, store_path = result.stdout.decode('utf-8').split('-> ')
-        return store_path.replace('\n', '')
+        if store_path:
+            return store_path.replace('\n', '')
+    
+def handle_org_binary_name(binary_name: str):
+    '''
+        Usually we expect names like 
+        - blender (blender.desktop)
+        - chromium
+        - gimp
+
+        but sometimes we get:
+        - org.kde.PrintQueue
+        - org.wireshark.Wireshark
+        - org.keepassxc.KeePassXC
+
+        these differ from the binary name:
+        for ex. org.keepassxc.KeePassXC -> keepassxc
+    '''
+
+    split = binary_name.split('.')
+    if len(split) is 3 and split[0] == 'org':
+        return split[1]
+    else:
+        return binary_name
 
 
 class PanelConfigLine:
@@ -48,9 +75,22 @@ class PanelConfigLine:
         identifier, source_file_name = source.split('=')
         self.identifier = identifier
         self.source_file_name = source_file_name.replace('\n', '')
-        self.application_name, self.binary_name = parse_file_name(self.source_file_name)
-        self.path = find_current_path(self.binary_name)
-        self.store_path = get_store_path(self.path)
+
+        application_name, binary_name = parse_file_name(self.source_file_name)
+        if not application_name or not binary_name:
+            raise Exception(f'Could not parse file name for {self.source_file_name}')
+        self.application_name = application_name
+        self.binary_name = binary_name
+
+        path = find_current_path(handle_org_binary_name(self.binary_name))
+        if not path:
+            raise Exception(f'Could not find path for {self.binary_name}')
+        self.path = path
+
+        store_path = get_store_path(self.path)
+        if not store_path:
+            raise Exception(f'Could not find store path for {self.path}')
+        self.store_path = store_path
 
     def format_result(self):
         return f"{self.identifier}={self.store_path_desktop_file()}\n"
@@ -81,9 +121,12 @@ class PanelConfig:
             for line in lines:
                 for s in supported:
                     if line.startswith(s):
-                        result = PanelConfigLine(line)
-                        if result.has_changed():
-                            self.lines.append(result)
+                        try: 
+                            result = PanelConfigLine(line)
+                            if result.has_changed():
+                                self.lines.append(result)
+                        except Exception as e:
+                            print(e)
 
         backup_file =  self.path + '.bak'
         if not os.path.isfile(backup_file):

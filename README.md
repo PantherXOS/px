@@ -64,3 +64,12 @@ Quick test:
 rsync -r --exclude={'venv','.git','__pycache','tests'} ../px root@<IP>:/root
 cd px; python3 -m venv venv; source venv/bin/activate; pip3 install .; px update apply
 ```
+
+To test in a pure environment:
+
+```bash
+guix environment --pure \
+--ad-hoc python python-setuptools fontconfig coreutils bash
+```
+
+Do note that it will fail to find most, currently installed apps since they are not part of the environment.

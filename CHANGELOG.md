@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.19]
+
+- Properly handle desktop files in org format (e.g. `org.keepassxc.KeePassXC.desktop`)
+
 ## [0.0.18]
 
 ### Changed
