@@ -1,28 +1,33 @@
 MESSAGES = {
-    'check_system_updates': '=> Checking for system updates ...',
-    'check_user_updates': "=> Checking for user application updates ...",
-    'channels_found': 'Found global channels file at /etc/guix/channels.scm, defaulting to that.',
-    'channels_found_legacy': 'Found global channels file at /etc/channels.scm, defaulting to that.',
-    'system_config_not_found': "Could not find /etc/system.scm",
-    'question_apply_updates': 'Would you like to apply all pending updates?',
-    'help_system_updates': 'To apply all pending updates manually, run: px system reconfigure /etc/system.scm',
-    'help_user_profile_updates': "To apply all pending updates manually, run: px package -u",
-    'failed_to_delete': "Failed to delete {} at {}"
+    "check_system_updates": "=> Checking for system updates ...",
+    "check_user_updates": "=> Checking for user application updates ...",
+    "channels_found": "Found global channels file at /etc/guix/channels.scm, defaulting to that.",
+    "channels_found_backup": "Found global channels backup file at /etc/guix/channels.scm.bak, defaulting to that.",
+    "channels_found_legacy": "Found global channels file at /etc/channels.scm, defaulting to that.",
+    "system_config_not_found": "Could not find /etc/system.scm",
+    "question_apply_updates": "Would you like to apply all pending updates?",
+    "help_system_updates": "To apply all pending updates manually, run: px system reconfigure /etc/system.scm",
+    "help_user_profile_updates": "To apply all pending updates manually, run: px package -u",
+    "failed_to_delete": "Failed to delete {} at {}",
 }
 
 MESSAGES_FLATPAK = {
-    'flatpak_found': 'Found Flatpak installation.',
-    'question_apply_updates': 'Would you like to apply all pending Flatpak updates?'
+    "flatpak_found": "Found Flatpak installation.",
+    "question_apply_updates": "Would you like to apply all pending Flatpak updates?",
 }
 
 
 def help_block():
     print("### Configuration changes")
-    print("  To apply system configuration changes (/etc/system.scm) run `px reconfigure` as `root` user.")
+    print(
+        "  To apply system configuration changes (/etc/system.scm) run `px reconfigure` as `root` user."
+    )
     print("")
     print("### Updates")
     print("  To update run `px update`. To skip all prompts, run `px update apply`")
-    print("     as `user`: Update all packages you have installed as a user, to your user profile.")
+    print(
+        "     as `user`: Update all packages you have installed as a user, to your user profile."
+    )
     print("     as `root`: Update the operating system and all global packages.")
     print("")
     print("  Issues with fonts, icons or mime after updates? Run `px maintenance`")
@@ -40,7 +45,9 @@ def help_block():
         "     Each user may have their own selection of packages, at different versions."
     )
     print("")
-    print("     To print all packages in the current user profile run `px package -I` or `guix package -I`")
+    print(
+        "     To print all packages in the current user profile run `px package -I` or `guix package -I`"
+    )
     print("")
     print("### Services")
     print("  To search services: 'px system search ...'")

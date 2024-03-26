@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.20]
+
+### Changed
+
+- Ugly work-around to handle recent changes in guix, and allow recovering from it https://issues.guix.gnu.org/49610
+
 ## [0.0.19]
+
+### Fixed
 
 - Properly handle desktop files in org format (e.g. `org.keepassxc.KeePassXC.desktop`)
 
