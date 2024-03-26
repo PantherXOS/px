@@ -1,6 +1,6 @@
 CHANNELS_FILE = "/etc/guix/channels.scm"
 # https://issues.guix.gnu.org/49610
-CHANNELS_FILE_BK = "/etc/guix/channels.scm.bk"
+CHANNELS_FILE_BK = "/etc/guix/channels.scm.bak"
 CHANNELS_FILE_LEGACY = "/etc/channels.scm"
 SYSTEM_CONFIG_FILE = "/etc/system.scm"
 SUBSTITUTE_CACHE_PATH = "/var/guix/substitute/cache"

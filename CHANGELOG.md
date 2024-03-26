@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 
+## [0.0.21]
+
+### Fixed
+
+- Incorrect filename for automatically created channels backup file
+
 ## [0.0.20]
 
 ### Changed
